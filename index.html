@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MSA - PRIZM</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar fixed-top  navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+        <img src="msa.png" style="height: 80px">
+        | MSA - PRIZM</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Data Dump <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Spy on civilians</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Start War</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pwn the bad guys</button>
+        </form>
+    </div>
+</nav>
+
+<div style="min-height: calc(100vh - 210px); padding: 50px; margin-top: 80px">
+
+    <div style="margin-left: auto; margin-right: auto; max-width: 800px; width: 100%">
+
+        <div style="background-color: #EEEEEE; padding: 20px">
+            <p style="margin: 0px">
+                You are a secret agent for MSA and you suspect one of your co-workers, Sammy Stard, is spying for Russia.
+                Sammy is a member of the MasseyHacks organizer team, and they seem to like to talk about lots of random stuff, so you decide to view some of their chat logs for some potential evidence. You stumble upon this chat log from a few days ago:
+
+            </p>
+        </div>
+
+        <br>
+
+
+        <h3>CASE #: PAASQC190006969</h3>
+        <h5>DATA PROVIDER: SLACK</h5>
+        <h5>USER: SAMMY STARD</h5>
+
+        <img src="slack-compliance-dump.png" style="border: black; border-style: solid">
+        <p>slack-prizm-PAASQC190006969.png</p>
+
+
+        <div style="background-color: #EEEEEE; padding: 20px">
+            <p style="margin: 0px">
+
+                It looks like English, but is in fact an extremely well-disguised code. It seems familiar to you so you do some research. What do you find?
+
+                <br>
+                <br>
+
+                <input id="codebox" class="form-control" type="text">
+                <button id="submit" type="button" class="btn btn-success" style="margin-top: 5px; width: 100%">Submit</button>
+
+
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="page-footer font-small blue" style="background-color: #EEEEEE">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">
+        <b>MASSEYHACKS SECURITY AGENCY - TOP SECRET</b> <br><br>
+
+        The information contained in these documents is confidential, privileged and only for the
+        information of the intended recipient and may not be used, published or redistributed without
+        the prior written consent of the MasseyHacks Security Agency.
+
+
+    </div>
+    <!-- Copyright -->
+
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://masseyhacks.ca/js/sweetalert2.all.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#submit').on('click', function() {
+            swal({
+                type: 'info',
+                title: 'Waiting for server'
+            });
+            swal.showLoading();
+            $.ajax({
+                type: 'POST',
+                url: 'https://api.hackenger.com/41YJLvLz8eQ7Bq0g50Do',
+                data: JSON.stringify({
+                    'answer': $('#codebox').val()
+                }),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if(data.status){
+
+                        swal({
+                            title: 'Success!',
+                            html: data['data'],
+                            type: 'success'
+                        })
+
+                    }else{
+                        swal('Error', 'Invalid Response', 'error')
+                    }
+
+                },
+                error: function (data) {
+                    swal('Error', 'There was an error contacting the server. Contact a platform member for assistance.', 'error')
+                }
+            })
+        })
+    })
+
+</script>
+
+</body>
+</html>
