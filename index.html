@@ -97,8 +97,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://masseyhacks.ca/js/sweetalert2.all.js"></script>
+
+
+<!-- Hackenger Common Util -->
+<script src="https://cdn.hackenger.com/common.js"></script>
+
 <script>
+	var problemID = "41YJLvLz8eQ7Bq0g50Do";
     $(document).ready(function() {
+		if (localStorage.getItem("statSent") === null) {
+            localStorage.setItem('statSent', true);
+			attempt(problemID);
+        }
         $('#submit').on('click', function() {
             swal({
                 type: 'info',
@@ -115,7 +125,7 @@
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
                     if(data.status){
-
+						solved(problemID);
                         swal({
                             title: 'Success!',
                             html: data['data'],
